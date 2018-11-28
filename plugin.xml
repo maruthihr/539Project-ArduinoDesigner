@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="ca.mcgill.ecse539.project.arduino.designer.Activator"
+               id="ca.mcgill.ecse539.project.arduino.designer"
+	       name="ArduinoDesign">
+    </component>
+  </extension>
+</plugin>

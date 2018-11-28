@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="ArduinoDesign" version="12.0.0.2017041100">
+  <ownedViewpoints name="Project" modelFileExtension="arduino">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Sketch" domainClass="arduino::Sketch" enablePopupBars="true">
+      <metamodel href="http://www.mcgill.ca/ecse539/project/arduino#/"/>
+      <defaultLayer name="Canvas">
+        <edgeMappings name="next" sourceMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup']" targetMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode']" targetFinderExpression="feature:next">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Setup" label="Setup" domainClass="arduino::Setup" childrenPresentation="List">
+          <subNodeMappings name="PinNode" semanticCandidatesExpression="feature:digitalpin" domainClass="arduino::Pin">
+            <style xsi:type="style:LozengeNodeDescription" labelSize="12" labelExpression="aql:self.Direction.toString() + ' &lt;-> ' + self.number.toString() + ' &lt;-> '  + self.name " labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="Loop" domainClass="arduino::Loop">
+          <subNodeMappings name="readFunctionNode" domainClass="arduino::Read">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Read ' + self.digitalpin.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="writeFunctionNode" semanticCandidatesExpression="feature:eAllContents" domainClass="arduino::Write">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Write ' + self.digitalpin.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="General"/>
+        <toolSections name="Pins">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createPin" label="Digital Pin" elementsToSelect="feature:digitalpin" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup']/@subNodeMappings[name='PinNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::DigitalPin" referenceName="digitalpin"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Functions">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="callRead" label="Read" precondition="callRead" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Read" referenceName="instruction"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Transformation">
+          <ownedTools xsi:type="tool_1:ToolDescription">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation/>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="ca.mcgill.ecse539.project.arduino.designer.Services"/>
+  </ownedViewpoints>
+</description:Group>
