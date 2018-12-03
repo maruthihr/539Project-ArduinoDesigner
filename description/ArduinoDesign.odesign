@@ -4,8 +4,16 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Sketch" domainClass="arduino::Sketch" enablePopupBars="true">
       <metamodel href="http://www.mcgill.ca/ecse539/project/arduino#/"/>
       <defaultLayer name="Canvas">
-        <edgeMappings name="next" sourceMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup']" targetMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode']" targetFinderExpression="feature:next">
-          <style sizeComputationExpression="2">
+        <nodeMappings name="Variable" semanticCandidatesExpression="feature:variable" domainClass="arduino::Variable">
+          <style xsi:type="style:LozengeNodeDescription" labelSize="12" showIcon="false" labelAlignment="RIGHT" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="next" sourceMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='variableAssignment'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subContainerMappings[name='if'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='delay']" targetMapping="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='variableAssignment'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subContainerMappings[name='if'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='delay']" targetFinderExpression="feature:next">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='purple']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -29,23 +37,55 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </containerMappings>
-        <containerMappings name="Loop" domainClass="arduino::Loop">
-          <subNodeMappings name="readFunctionNode" domainClass="arduino::Read">
-            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Read ' + self.digitalpin.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
+        <containerMappings name="Loop" domainClass="arduino::Loop" reusedNodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='Variable']">
+          <subNodeMappings name="readFunctionNode" semanticCandidatesExpression="feature:instruction" domainClass="arduino::Read">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Read ' + self.digitalpin.number + ' to ' + self.variable.name/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="writeFunctionNode" semanticCandidatesExpression="feature:eAllContents" domainClass="arduino::Write">
-            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Write ' + self.digitalpin.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
+          <subNodeMappings name="writeFunctionNode" semanticCandidatesExpression="feature:instruction" domainClass="arduino::Write">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Write ' + self.variable.name + ' to ' + self.digitalpin.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
             </style>
           </subNodeMappings>
+          <subNodeMappings name="variableAssignment" label="Variable Assignment" semanticCandidatesExpression="feature:instruction" domainClass="arduino::VariableAssignment">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:['Set ' + self.variable.name + ' to ' + self.value.number/]" sizeComputationExpression="6" labelPosition="node" resizeKind="NSEW" width="20" height="6">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="delay" label="Delay" semanticCandidatesExpression="feature:instruction" domainClass="arduino::Delay">
+            <style xsi:type="style:LozengeNodeDescription" labelSize="12" showIcon="false" labelExpression="aql:['Delay ' + self.duration /]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="Value" label="Value" semanticCandidatesExpression="feature:eAllContents" domainClass="arduino::Value">
+            <style xsi:type="style:DotDescription" labelSize="12" showIcon="false" labelExpression="aql:self.number" labelAlignment="RIGHT" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subContainerMappings name="if" semanticCandidatesExpression="feature:instruction" domainClass="arduino::If" reusedNodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='variableAssignment'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode'] //@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='Variable']" reusedContainerMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subContainerMappings[name='if']">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:['if ' + self.condition.variable.name +' ' + self.condition.mathoperator.operator.toString() + ' ' + self.condition.value.number /]" backgroundStyle="Liquid">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </style>
+          </subContainerMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelFormat>bold</labelFormat>
@@ -54,7 +94,22 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </containerMappings>
-        <toolSections name="General"/>
+        <toolSections name="General">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Setup" elementsToSelect="feature:setup" containerMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Setup" referenceName="setup"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Loop" elementsToSelect="feature:loop" containerMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Loop" referenceName="loop"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
         <toolSections name="Pins">
           <ownedTools xsi:type="tool:NodeCreationDescription" name="createPin" label="Digital Pin" elementsToSelect="feature:digitalpin" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Setup']/@subNodeMappings[name='PinNode']">
             <variable name="container"/>
@@ -65,11 +120,18 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Functions">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="callRead" label="Read" precondition="callRead" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="callRead" label="Read" elementsToSelect="feature:instruction" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='readFunctionNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Read" referenceName="instruction"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="callWrite" label="Write" elementsToSelect="feature:instruction" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='writeFunctionNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Write" referenceName="instruction"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
@@ -78,6 +140,31 @@
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation/>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Variables">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createVariable" label="Variable" elementsToSelect="feature:variable" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='Variable']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: arduino::Loop">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Variable" referenceName="variable"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createVarAssignment" label="Variable Assignment" elementsToSelect="feature:instruction" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='variableAssignment']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::VariableAssignment" referenceName="instruction"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="createConstant" label="Constant" elementsToSelect="feature:value" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='Value']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Value" referenceName="value"/>
+            </initialOperation>
           </ownedTools>
         </toolSections>
       </defaultLayer>
