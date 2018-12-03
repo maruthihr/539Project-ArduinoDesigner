@@ -134,6 +134,13 @@
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Write" referenceName="instruction"/>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="callDelay" label="Delay" elementsToSelect="feature:instruction" nodeMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subNodeMappings[name='delay']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Delay" referenceName="instruction"/>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
         <toolSections name="Transformation">
           <ownedTools xsi:type="tool_1:ToolDescription">
@@ -164,6 +171,15 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::Value" referenceName="value"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Control">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="if" elementsToSelect="feature:instruction" containerMappings="//@ownedViewpoints[name='Project']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='Loop']/@subContainerMappings[name='if']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="arduino::If" referenceName="instruction"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
